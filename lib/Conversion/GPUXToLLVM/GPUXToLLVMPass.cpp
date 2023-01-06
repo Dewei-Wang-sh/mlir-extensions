@@ -231,7 +231,7 @@ private:
 
     assert(shape.size() == strides.size());
 
-    auto alignment = rewriter.getIntegerAttr(llvmIndexType, 64);
+    auto alignment = rewriter.getIntegerAttr(llvmIndexType, 512);
     auto alignmentVar =
         rewriter.create<mlir::LLVM::ConstantOp>(loc, llvmIndexType, alignment);
 

@@ -20,6 +20,9 @@ namespace mlir {
 template <typename ConcreteDialect>
 void registerDialect(DialectRegistry &registry);
 
+namespace vector {
+class VectorDialect;
+}
 namespace gpu {
 class GPUDialect;
 }

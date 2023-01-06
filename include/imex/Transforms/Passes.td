@@ -36,6 +36,7 @@ def InsertGPUAllocs : Pass<"insert-gpu-allocs", "::mlir::func::FuncOp"> {
   let constructor = "imex::createInsertGPUAllocsPass()";
   let dependentDialects = ["::mlir::memref::MemRefDialect",
                            "::mlir::gpu::GPUDialect",
+                           "::mlir::vector::VectorDialect",
                            "::mlir::arith::ArithDialect"];
   let options = [
     Option<"clientAPI", "client-api", "std::string", /*default=*/"\"opencl\"",

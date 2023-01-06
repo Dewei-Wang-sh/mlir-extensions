@@ -26,6 +26,7 @@
 #include <mlir/Dialect/Func/IR/FuncOps.h>
 #include <mlir/Dialect/GPU/Transforms/Passes.h>
 #include <mlir/Dialect/MemRef/IR/MemRef.h>
+#include <mlir/Dialect/Vector/IR/VectorOps.h>
 #include <mlir/Pass/Pass.h>
 
 namespace imex {
@@ -90,6 +91,9 @@ public:
         return {{load.getMemref()}};
       } else if (auto store = mlir::dyn_cast<mlir::memref::StoreOp>(op)) {
         return {{store.getMemref()}};
+      } else if (auto vector =
+                     mlir::dyn_cast<mlir::VectorTransferOpInterface>(op)) {
+        return {{vector.source()}};
       }
       // This case checks if a mlir func call within the gpu.launch has
       // operands which have memref as operands.It just collects them and checks
