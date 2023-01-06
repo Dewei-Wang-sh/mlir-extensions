@@ -110,4 +110,14 @@ def BF16ToGPU : Pass<"bf16-to-gpu", "::mlir::ModuleOp"> {
     ];
 }
 
+def AffineRaiseReduction : Pass<"affine-raise-reduction", "::mlir::func::FuncOp"> {
+  let summary = "raise affine loop carried load/store to iter_args";
+  let description = [{
+    This Pass matches affine loop carried load/store and transforms it to iter_args.
+  }];
+  let constructor = "imex::createAffineRaiseReductionPass()";
+  let dependentDialects = [
+    "::mlir::AffineDialect",
+    ];
+}
 #endif // _IMEX_TRANSFORMS_PASSES_TD_INCLUDED_
