@@ -120,4 +120,19 @@ def AffineRaiseReduction : Pass<"affine-raise-reduction", "::mlir::func::FuncOp"
     "::mlir::AffineDialect",
     ];
 }
+
+def VectorSubslice1 : Pass<"imex-vector-subslice1", "func::FuncOp"> {
+  let summary = "subslice coarse-grained vector to fine-grained vector";
+  let description = "";
+  let constructor = "mlir::vector::createVectorSubslice1Pass()";
+  let options = [
+    Option<"enableSIMT", "enable-simt", "bool", "true",
+           "enable simt or simd mode of the target">,
+    Option<"simdSize", "simd-size", "unsigned", "16",
+           "number of work items in a thread; number of threads in a warp">,
+  ];
+  let dependentDialects = ["::mlir::AffineDialect",
+                           "::mlir::arith::ArithDialect",
+                           "::mlir::math::MathDialect",
+                           "::mlir::gpu::GPUDialect"];
 #endif // _IMEX_TRANSFORMS_PASSES_TD_INCLUDED_

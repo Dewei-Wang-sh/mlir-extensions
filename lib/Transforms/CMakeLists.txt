@@ -7,6 +7,7 @@ add_mlir_library(IMEXTransforms
   LowerMemRefCopy.cpp
   BF16ToGPU.cpp
   AffineRaiseReduction.cpp
+  VectorSubslice1.cpp
 
   ADDITIONAL_HEADER_DIRS
   ${PROJECT_SOURCE_DIR}/imex/Transforms
